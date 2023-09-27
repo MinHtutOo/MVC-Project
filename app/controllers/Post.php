@@ -1,6 +1,6 @@
 <?php
 
-class Post
+class Post extends Controller
 {
     public function __construct()
     {

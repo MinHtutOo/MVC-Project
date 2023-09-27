@@ -3,7 +3,7 @@
 
     Options -Multiviews
 
-    RewriteBase /BMMVC/public/
+    RewriteBase /php-intermediate/BMMVC/public/
 
     RewriteCond %{REQUEST_FILENAME} !-d
 

@@ -17,7 +17,7 @@ class Core
         $url = explode("/", $url);
 
         if(!empty($url[0])){
-            if(file_exists("../app/controllers/". ucfirst($this->className) . ".php")) {
+            if(file_exists("../app/controllers/". ucfirst($url[0]) . ".php")) {
                 $this->className = $url[0];
                 unset($url[0]);
             }

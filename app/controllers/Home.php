@@ -1,15 +1,16 @@
 <?php
 
-class Home
+class Home extends Controller
 {
     public function __construct()
     {
-        echo "I am constructor of " . __CLASS__ . " class<br>";
+        $this->userModel = $this->model("UserModel");
     }
 
-    public function index()
+    public function index($data = [])
     {
-        echo "I am index method of " . __CLASS__ . " class<br>";
+        $data = $this->userModel->getAllUser();
+        $this->view("home/index", $data);
     }
 }
 
