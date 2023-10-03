@@ -7,7 +7,8 @@
     <div class="container my-5">
         <div class="col-md-8 offset-md-2">
             <div class="card bg-light p-5">
-                
+                <?php flash('register_success'); ?>
+                <?php flash('login_fail'); ?>
                 <h1 class="english text-info text-center mb-3">Login to Post</h1>
 
                 <form action="<?php echo URLROOT . 'user/login'?>" method="post">

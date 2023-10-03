@@ -10,7 +10,10 @@
         <?php  flash('del_fail'); ?>
         
         <div class="row">
+        
             <div class="col col-md-4">
+            <h4 class="english text-primary mb-3">Click to see Posts</h4>
+            
                 <ul class="list-group">
                 <?php foreach ($data["cats"] as $category): ?>
                         <li class="list-group-item rounded-0">
@@ -18,23 +21,16 @@
                         </li>
                     <?php endforeach; ?>
                 </ul>
+
             </div>
             <div class="col col-md-8">
-
                 <!-- Post Card Start -->
-                    <?php foreach($data['posts'] as $post) : ?>
-                        <div class="card rounded-0 mb-3">
-                            <div class="card-header bg-dark text-white rounded-0">
-                                <h6 class="english"><?php echo $post->title; ?></h6>
-                            </div>
-                            <div class="card-body p-2">
-                                <p><?php echo $post->description; ?></p>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="<?php echo URLROOT . 'home/show/' . $post->id; ?>" class="english btn btn-success text-white btn-sm">Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+                <h1 class="english text-primary text-center mb-2">Learn to Code.</h1>
+                <h2 class="english text-primary text-center mb-2 big-heading">Build Project.</h2>
+                <h2 class="english text-primary text-center mb-2">Earn Certifications.</h2>
+                <img src="<?php echo URLROOT . "/assets/imgs/code.png" ?>" alt="coding" class="rounded mx-auto d-block">
+                <a href="<?php echo URLROOT . 'user/register' ?>" class="english btn btn-primary btn-sm">Register to Create Post</a>
+
                 <!-- Post Card End -->
             </div>
         </div>

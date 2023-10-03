@@ -16,7 +16,9 @@ class Controller
 
     public function model($model)
     {
+        // print_r($model);
         if(file_exists("../app/models/" . $model . ".php")) {
+                // print_r("../app/models/" . $model . ".php");
             require_once "../app/models/" . $model . ".php";
             return new $model;
         }

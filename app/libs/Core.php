@@ -2,7 +2,7 @@
 class Core
 {
     private $className = "Home";
-    private $methodName = "index";
+    private $methodName = "mainHome";
     private $params = [];
 
     public function __construct()
