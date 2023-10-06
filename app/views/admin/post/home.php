@@ -7,6 +7,8 @@
 <div class="container-fluid">
     <div class="container my-2">
 
+        <?php flash("pis"); ?>
+
         <?php  flash('del_fail'); ?>
         <a href="<?php echo URLROOT . 'post/create/'; ?>" class="english btn btn-primary text-white btn-sm">Create</a>
         

@@ -10,7 +10,7 @@
         <?php flash("pes"); ?>
         
         <div class="d-grid gap-2 d-md-block">
-            <a href="<?php echo URLROOT . 'user/member/' . $data['post']->cat_id; ?>" class="btn btn-primary">Back</a>
+            <a href="<?php echo URLROOT . 'member/home/' . $data['post']->cat_id; ?>" class="btn btn-primary">Back</a>
         </div>
             <div class="col-md-12">
                 <div class="card p-5">

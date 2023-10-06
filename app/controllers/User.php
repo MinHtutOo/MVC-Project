@@ -101,7 +101,7 @@ class User extends Controller
                             redirect(URLROOT . 'admin/home');
                         }else {
                             setUserSession($rowUser);
-                            redirect(URLROOT . 'user/member/1');
+                            redirect(URLROOT . 'member/home/1');
                         }
                         
                         

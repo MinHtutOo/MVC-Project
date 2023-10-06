@@ -13,66 +13,9 @@ class Member extends Controller
         $this->categModel = $this->model("CategoryModel");
     }
 
-    public function login()
-    {
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-            $_POST = filter_input_array(INPUT_POST,FILTER_DEFAULT);
-            $data = [
-                "email" => $_POST['email'],
-                "password" => $_POST['password'],
-                "email_err" => '',
-                "password_err" => '',
-            ];
-        
-            if(empty($data['email'])) {
-                $data['email_err'] = "Email must be Supply!";
-            }
 
-            if(empty($data['password'])) {
-                $data['password_err'] = "Password must be Supply!";
-            }
 
-            if(empty($data['email_err']) && empty($data['password_err'])) {
-                $rowUser = $this->userModel->getUserByEmail($data['email']);
-                if(!empty($rowUser)) {
-                    $hash_pass = $rowUser->password;
-
-                    if(password_verify($data['password'], $hash_pass)) {
-                        // echo "success";
-                        
-                        if($_POST['email']  === "htuthtut@gmail.com"){
-                            setUserSession($rowUser);
-                            redirect(URLROOT . 'admin/home');
-                        }else {
-                            setUserSession($rowUser);
-                            redirect(URLROOT . 'user/member/1');
-                        }
-                        
-                        
-                    } else {
-                        // echo "fail";
-                        flash("login_fail", "Login Fail!");
-                        $this->view('user/login');
-                    }
-                } else {
-                    $data['email_err'] = "Email Error!";
-                }
-            }else {
-                $this->view("user/login", $data);
-            }
-        }else {
-            $this->view("user/login");
-        }
-    }
-
-    public function logout()
-    {
-        unsetUserSession();
-        //$this->view('home/index/1');
-        redirect(URLROOT);
-    }
-
-    public function member($para = [])
+    public function home($para = [])
     {
         $data = [
             'cats' => '',
@@ -81,13 +24,70 @@ class Member extends Controller
         $data = $this->userModel->getAllUser();
         $data['cats'] = $this->categModel->getAllCategory();
         $data['posts'] = $this->postModel->getCat($para[0]);
-        $this->view("user/member", $data);
+        $this->view("member/home", $data);
     }
 
-    public function mshow($para = [])
+    public function create()
+    {
+        $data = [
+            'cats' => '',
+            'title' => '',
+            'desc' => '',
+            'file' => '',
+            'content' => '',
+            'title_err' => '',
+            'desc_err' => '',
+            'file_err' => '',
+            'content_err' => ''
+        ];
+        $data['cats'] = $this->categModel->getAllCategory();
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            $root = dirname(dirname(dirname(__FILE__)));
+            // echo $root;
+            $files = $_FILES['file'];
+            // print_r($files);
+
+            $data['title'] = $_POST['title'];
+            $data['desc'] = $_POST['desc'];
+            $data['content'] = $_POST['content'];
+
+            if (empty($data['title'])) {
+                $data['title_err'] = "Please enter title!";
+            }
+            if (empty($data['desc'])) {
+                $data['desc_err'] = "Please write description!";
+            }
+            if (empty($data['content'])) {
+                $data['content_err'] = "Please write content!";
+            }
+
+            if(empty($data['title_err']) && empty($data['desc_err']) && empty($data['content_err'])) {
+                if(!empty($files['name'])) {
+                    move_uploaded_file($files['tmp_name'], $root . '/public/assets/uploads/' . $files['name']);
+                    if ($this->postModel->insertPost($_POST['cat_id'], $data['title'], $data['desc'], $files['name'], $data['content'])) {
+                        flash("pis", "Post Insert Successfully.");
+                        redirect(URLROOT . "member/home/1");
+                    } else {
+                        $this->view("member/create", $data);
+                    }
+                }else {
+                    flash("fne", "Please Insert A File");
+                    $this->view("member/create", $data);
+                }
+            } else {
+                $this->view("member/create", $data);
+            }
+        }else {
+            $this->view("member/create", $data);
+        }
+    }
+
+    public function show($para = [])
     {
         $post = $this->postModel->getPostById($para[0]);
-        $this->view('user/mshow', ['post' => $post]);
+        $this->view('member/show', ['post' => $post]);
     }
 }
 

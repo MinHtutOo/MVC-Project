@@ -30,7 +30,7 @@
                                 <?php if(getUserSession()->is_admin == 1):?>
                                     <li><a class="dropdown-item" href="<?php echo URLROOT . 'admin/home' ?>">Admin Panel</a></li>
                                 <?php elseif(getUserSession()->is_admin == 0) : ?>
-                                    <li><a class="dropdown-item" href="<?php echo URLROOT . 'user/member/1' ?>">Member Panel</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo URLROOT . 'member/home/1' ?>">Member Panel</a></li>
                                 <?php endif; ?>
                         <?php else : ?>
                             <li><a class="dropdown-item" href="<?php echo URLROOT . 'user/login' ?>">Login</a></li>

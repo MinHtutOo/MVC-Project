@@ -8,20 +8,20 @@
     <div class="container my-2">
 
         <?php  flash('del_fail'); ?>
-        <a href="<?php echo URLROOT . 'post/create/'; ?>" class="english btn btn-primary text-white btn-sm">Create</a>
+        <a href="<?php echo URLROOT . 'member/create/'; ?>" class="english btn btn-primary text-white btn-sm">Create</a>
         
         <div class="row">
             <div class="col col-md-4">
                 <ul class="list-group">
                 <?php foreach ($data["cats"] as $category): ?>
                         <li class="list-group-item rounded-0">
-                                <a href="<?php echo URLROOT . "user/member/" . $category->id; ?>" class="english text-decoration-none"><?php echo $category->name; ?></a>
+                                <a href="<?php echo URLROOT . "member/home/" . $category->id; ?>" class="english text-decoration-none"><?php echo $category->name; ?></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
                 
             </div>
-            <div class="col col-md-8">
+            <div class="col col-md-8" >
                 <!-- Post Card Start -->
                 <?php foreach($data['posts'] as $post) : ?>
                         <div class="card rounded-0 mb-3">
@@ -31,7 +31,7 @@
                             <div class="card-body p-2">
                                 <p><?php echo $post->description; ?></p>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="<?php echo URLROOT . 'member/mshow/' . $post->id; ?>" class="english btn btn-success text-white btn-sm">Detail</a>
+                                <a href="<?php echo URLROOT . 'member/show/' . $post->id; ?>" class="english btn btn-success text-white btn-sm">Detail</a>
                                
                                 
                                 </div>
